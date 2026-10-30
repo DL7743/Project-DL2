@@ -14,7 +14,7 @@ WHERE id = %s;
 with connect_db() as conn:
     with conn.cursor() as cur:
 # при выполнении указываем именно на доставку ID 99
-        cur.execute(sql, (99,))
+        cur.execute(sql, (99, ))
         rows = cur.fetchall()
     for row in rows:
         print(row)
