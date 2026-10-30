@@ -5,15 +5,15 @@ from db import connect_db
 # 3. Выведите число изменённых строк. Проверьте через SELECT, что остальные пять доставок не изменились.
 
 # Изменяем через UPDATE и мняем статус с "ready" на "done" для доставки ID 99
-sql = """
+sql_update = """
 UPDATE lesson_deliveries
-SET status = 'done'
-WHERE id = 99;
+SET status = %s
+WHERE id = %s;
 """
 # выводим число измененных строк
 with connect_db() as conn:
     with conn.cursor() as cur:
-        cur.execute(sql)
+        cur.execute(sql_update, ("done", 99, ))
         changed = cur.rowcount
 print(f"Изменено строк: {changed}")
 
